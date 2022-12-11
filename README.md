@@ -40,9 +40,11 @@ keys in the following format per-line.
 
 These public keys are safe to check into your repository. To generate this file
 based on the public keys available on GitHub for committers to the repository,
-you can generate them using the following project. This file can also be
-maintained manually and checked in by each individual committer for your
-projects.
+you can generate them using the `allowedSignersFile` project by @frankywahl.
+This file can also be maintained manually and checked in by each individual
+committer for your projects.
+
+[=> frankywahl/allowedSignersFile project](https://github.com/frankywahl/allowedSignersFile)
 
 ## Optional inputs
 
