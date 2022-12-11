@@ -8,7 +8,8 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
-      - name: Run repasar with the current code base
-        uses: rogeruiz/repasar@main
+      - name: Run repasar on the latest SHA
+        uses: rogeruiz/repasar@v1.0.0
         with:
           allowed-signers-file-path: ./.github/allowed_signers
+          fail-on-unverified: true
