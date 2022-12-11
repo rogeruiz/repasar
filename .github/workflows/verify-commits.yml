@@ -1,10 +1,10 @@
-name: verify-commits
-run-name: ${{ github.actor }} is verifying signature of verify-commits
+name: Verifying the latest commit
+run-name: ${{ github.actor }} is verifying the validity of current commit
 on: [push]
 jobs:
   check-sha:
     runs-on: ubuntu-latest
-    name: Check the SHA of the recent commit
+    name: Check the SHA of the latest commit
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
