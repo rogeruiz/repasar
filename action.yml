@@ -12,7 +12,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.sha-or-tag-to-verify }}
+    - ${{ inputs.allowed-signers-file-path }}
 branding:
   icon: 'check-circle'
   color: 'blue'
