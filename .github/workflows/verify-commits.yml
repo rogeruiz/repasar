@@ -1,0 +1,14 @@
+name: verify-commits
+run-name: ${{ github.actor }} is verifying signature of verify-commits
+on: [push]
+jobs:
+  check-sha:
+    runs-on: ubuntu-latest
+    name: Check the SHA of the recent commit
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Run repasar with the current code base
+        uses: rogeruiz/repasar@main
+        with:
+          allowed-signers-file-path: ./.github/allowed_signers

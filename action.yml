@@ -1,0 +1,18 @@
+name: 'Repasar Action'
+author: 'Roger Steve Ruiz'
+description: 'Run git-verify-commit and git-verify-tag commands on latest SHA or Tag'
+inputs:
+  allowed-signers-file-path:
+    description: 'A path to a file in the repository to use as a list of public keys for gpg --import'
+    required: true
+outputs:
+  verified-status:
+    description: 'The verification status'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.sha-or-tag-to-verify }}
+branding:
+  icon: 'check-circle'
+  color: 'blue'
