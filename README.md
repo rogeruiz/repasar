@@ -1,3 +1,5 @@
+![The Repasar GitHub repository social image](./.github/repo-social.jpg)
+
 # Repasar
 
 The Repasar GitHub Action (GHA) checks the current SHA that triggered the GHA
