@@ -1,10 +1,10 @@
-name: Verifying the latest commit
+name: Verifying the commits on a PR
 run-name: ${{ github.actor }} is verifying the validity of current commit
-on: [push]
+on: [pull_request]
 jobs:
   check-sha:
     runs-on: ubuntu-latest
-    name: Check the SHA of the latest commit
+    name: Check the SHA of the any commits in a pull request
     steps:
       - name: Checkout the code
         uses: actions/checkout@v5
