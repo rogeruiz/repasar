@@ -16,7 +16,7 @@ Copy the text below into a file in your repository called
 `.github/workflows/verified_commits_check.yml` then just commit and push it to
 your default branch.
 
-```sh
+```yaml
 # .github/workflows/verify-commits.yml
 name: Verifying the latest commit
 run-name: ${{ github.actor }} is verifying the validity of current commit
@@ -29,10 +29,12 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v5
       - name: Run repasar on the latest SHA
-        uses: rogeruiz/repasar@v1.1.0
+        uses: rogeruiz/repasar@v1.1.3
         with:
           allowed-signers-file-path: ./.github/allowed_signers
           fail-on-unverified: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Required inputs
