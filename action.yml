@@ -1,22 +1,23 @@
-name: 'Repasar Action'
-author: 'Roger Steve Ruiz'
-description: 'Run git-verify-commit command on the latest SHA'
+name: "Repasar Action"
+author: "Roger Steve Ruiz"
+description: "Run git-verify-commit command on all commits in a PR (or the latest SHA for push events)"
 inputs:
   allowed-signers-file-path:
-    description: 'A path to a file in the repository to use as a list of SSH public keys IDs.'
+    description: "A path to a file in the repository to use as a list of SSH public keys IDs."
     required: true
+    # Note: For PR verification, GITHUB_TOKEN must be available in the environment to fetch commits via the GitHub API.'
   fail-on-unverified:
-    description: 'Set the variable to true to fail the Action on when the git-verify-commit fails to be verified.'
+    description: "Set the variable to true to fail the Action on when the git-verify-commit fails to be verified."
     required: false
 outputs:
   verified:
-    description: 'The verification status'
+    description: "The verification status"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
   args:
     - ${{ inputs.allowed-signers-file-path }}
     - ${{ inputs.fail-on-unverified }}
 branding:
-  icon: 'check-circle'
-  color: 'green'
+  icon: "check-circle"
+  color: "green"
