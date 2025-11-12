@@ -29,7 +29,7 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v3
       - name: Run repasar on the latest SHA
-        uses: rogeruiz/repasar@v1.0.0
+        uses: rogeruiz/repasar@v1.1.0
         with:
           allowed-signers-file-path: ./.github/allowed_signers
           fail-on-unverified: true
@@ -45,13 +45,10 @@ keys in the following format per-line.
 <email>[,<email>...] <key type> <public key>
 ```
 
-These public keys are safe to check into your repository. To generate this file
-based on the public keys available on GitHub for committers to the repository,
-you can generate them using the `allowedSignersFile` project by @frankywahl.
-This file can also be maintained manually and checked in by each individual
-committer for your projects.
-
-[=> frankywahl/allowedSignersFile project](https://github.com/frankywahl/allowedSignersFile)
+> [!IMPORTANT]
+> This file can be created manually by taking the public key file you have
+> locally and rearranging the comment email at the end to the beginning.
+> Remember to add only the emails you'd like to allow for verification purposes.
 
 ## Optional inputs
 
