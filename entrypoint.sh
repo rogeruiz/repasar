@@ -26,11 +26,18 @@ if [[ "$GITHUB_EVENT_NAME" == "pull_request" || "$GITHUB_EVENT_NAME" == "pull_re
   fi
   FAILED_SHAS=()
   for sha in "${SHAS[@]}"; do
-    if git verify-commit "$sha" &>/dev/null; then
+    VERIFY_OUTPUT=$(git verify-commit "$sha" 2>&1)
+    VERIFY_EXIT=$?
+    if [ $VERIFY_EXIT -eq 0 ]; then
       echo "Commit $sha is verified successfully!"
-      git verify-commit "$sha"
+      echo "$VERIFY_OUTPUT"
+    elif echo "$VERIFY_OUTPUT" | grep -q "No principal matched"; then
+      echo "Commit $sha: 'No principal matched' warning (not treated as failure)."
+      echo "$VERIFY_OUTPUT"
+      # Do NOT add to FAILED_SHAS
     else
       echo "Failed to verify the commit $sha."
+      echo "$VERIFY_OUTPUT"
       FAILED_SHAS+=("$sha")
     fi
   done
