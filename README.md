@@ -2,9 +2,13 @@
 
 # Repasar
 
-The Repasar GitHub Action (GHA) checks the current SHA that triggered the GHA
-and check to make sure that it is signed properly using subcommands supported by
-Git.
+The Repasar GitHub Action (GHA) checks the commit signatures for security. It
+now supports verifying **all commits in a pull request (PR)**, not just the
+latest commit. For push events, it continues to verify the latest commit as
+before.
+
+- For PRs: All commits in the PR are checked for verified signatures.
+- For pushes: Only the latest commit is checked.
 
 ## Setup
 
@@ -30,6 +34,7 @@ jobs:
           allowed-signers-file-path: ./.github/allowed_signers
           fail-on-unverified: true
 ```
+
 ## Required inputs
 
 The only required input is the `allowed-signers-file-path` which is recommended
@@ -51,8 +56,16 @@ committer for your projects.
 ## Optional inputs
 
 By default, this Action does not fail the run if the verification of the commit
-is unsuccessful. If you would like to have the Action fail, then set the `fail-on-unverified` to `true` in the `workflows/` YAML file.
+is unsuccessful. If you would like to have the Action fail, then set the
+`fail-on-unverified` to `true` in the `workflows/` Yaml file.
 
 ## Environment variables the action uses
 
-This action uses the `${GITHUB_SHA}` variable to pull the current commit.
+- `${GITHUB_SHA}`: Used for single commit verification (push events).
+- `${GITHUB_EVENT_NAME}` and `${GITHUB_EVENT_PATH}`: Used to detect PR context
+  and extract PR number.
+- `${GITHUB_TOKEN}`: **Required for PR verification** to fetch all commits in
+  the PR using the GitHub API.
+
+**Note:** For PRs, ensure the workflow has access to `GITHUB_TOKEN` (default in
+GitHub Actions) and that the token has `repo` scope for private repositories.
