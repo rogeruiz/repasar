@@ -11,7 +11,7 @@ jobs:
       - name: Run repasar on the latest PR changes
         uses: rogeruiz/repasar@v1.1.2
         with:
-          allowed-signers-file-path: ./.github/allowed_signers
+          allowed-signers-file-path: .github/allowed_signers
           fail-on-unverified: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
