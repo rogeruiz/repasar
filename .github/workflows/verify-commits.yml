@@ -13,3 +13,5 @@ jobs:
         with:
           allowed-signers-file-path: ./.github/allowed_signers
           fail-on-unverified: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
